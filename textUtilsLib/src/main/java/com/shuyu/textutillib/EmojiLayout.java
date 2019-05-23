@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -77,13 +76,13 @@ public class EmojiLayout extends LinearLayout {
             return;
 
 
-        edittextBarVPager = (ViewPager) findViewById(R.id.edittext_bar_vPager);
+        edittextBarVPager = findViewById(R.id.edittext_bar_vPager);
 
-        edittextBarViewGroupFace = (LinearLayout) findViewById(R.id.edittext_bar_viewGroup_face);
+        edittextBarViewGroupFace = findViewById(R.id.edittext_bar_viewGroup_face);
 
-        edittextBarLlFaceContainer = (LinearLayout) findViewById(R.id.edittext_bar_ll_face_container);
+        edittextBarLlFaceContainer = findViewById(R.id.edittext_bar_ll_face_container);
 
-        edittextBarMore = (LinearLayout) findViewById(R.id.edittext_bar_more);
+        edittextBarMore = findViewById(R.id.edittext_bar_more);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.EmojiLayout);
@@ -95,8 +94,8 @@ public class EmojiLayout extends LinearLayout {
             unFocusIndicator = array.getDrawable(R.styleable.EmojiLayout_richIndicatorUnFocus);
             richMarginBottom = (int) array.getDimension(R.styleable.EmojiLayout_richMarginBottom, dip2px(getContext(), 8));
             richMarginTop = (int) array.getDimension(R.styleable.EmojiLayout_richMarginTop, dip2px(getContext(), 15));
-            numColumns =  array.getInteger(R.styleable.EmojiLayout_richLayoutNumColumns, 7);
-            numRows =  array.getInteger(R.styleable.EmojiLayout_richLayoutNumRows, 3);
+            numColumns = array.getInteger(R.styleable.EmojiLayout_richLayoutNumColumns, 7);
+            numRows = array.getInteger(R.styleable.EmojiLayout_richLayoutNumRows, 3);
             pageCount = numColumns * numRows - 1;
             array.recycle();
         }
@@ -162,12 +161,12 @@ public class EmojiLayout extends LinearLayout {
      */
     private View getGridChildView(int i) {
         View view = View.inflate(getContext(), R.layout.rich_expression_gridview, null);
-        LockGridView gv = (LockGridView) view.findViewById(R.id.gridview);
+        LockGridView gv = view.findViewById(R.id.gridview);
         gv.setNumColumns(numColumns);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) gv.getLayoutParams();
         layoutParams.setMargins(0, richMarginTop, 0, richMarginBottom);
 
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
 
         int startInd = (i - 1) * pageCount;
         if ((startInd + pageCount) >= reslist.size()) {
@@ -178,43 +177,39 @@ public class EmojiLayout extends LinearLayout {
         list.add(deleteIconName);
         final SmileImageExpressionAdapter smileImageExpressionAdapter = new SmileImageExpressionAdapter(getContext(), 1, list);
         gv.setAdapter(smileImageExpressionAdapter);
-        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gv.setOnItemClickListener((parent, view1, position, id) -> {
+            String filename = smileImageExpressionAdapter.getItem(position);
+            try {
+                if (!deleteIconName.equals(filename)) { // 不是删除键，显示表情
+                    (editTextEmoji).insertIcon(filename);
+                } else { // 删除文字或者表情
+                    if (!TextUtils.isEmpty(editTextEmoji.getText())) {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String filename = smileImageExpressionAdapter.getItem(position);
-                try {
-                    if (!deleteIconName.equals(filename)) { // 不是删除键，显示表情
-                        (editTextEmoji).insertIcon(filename);
-                    } else { // 删除文字或者表情
-                        if (!TextUtils.isEmpty(editTextEmoji.getText())) {
-
-                            int selectionStart = editTextEmoji.getSelectionStart();// 获取光标的位置
-                            if (selectionStart > 0) {
-                                String body = editTextEmoji.getText().toString();
-                                String tempStr = body.substring(0, selectionStart);
-                                int i = tempStr.lastIndexOf("[");// 获取最后一个表情的位置
-                                int end = tempStr.lastIndexOf("]");// 获取最后一个表情的位置
-                                if (i != -1 && end == (selectionStart - 1)) {
-                                    CharSequence cs = tempStr.substring(i, selectionStart);
-                                    if (SmileUtils.containsKey(cs.toString()))
-                                        editTextEmoji.getEditableText().delete(i, selectionStart);
-                                    else
-                                        editTextEmoji.getEditableText().delete(selectionStart - 1,
-                                                selectionStart);
-                                } else {
-                                    editTextEmoji.getEditableText().delete(selectionStart - 1, selectionStart);
-                                }
+                        int selectionStart = editTextEmoji.getSelectionStart();// 获取光标的位置
+                        if (selectionStart > 0) {
+                            String body = editTextEmoji.getText().toString();
+                            String tempStr = body.substring(0, selectionStart);
+                            int i1 = tempStr.lastIndexOf("[");// 获取最后一个表情的位置
+                            int end = tempStr.lastIndexOf("]");// 获取最后一个表情的位置
+                            if (i1 != -1 && end == (selectionStart - 1)) {
+                                CharSequence cs = tempStr.substring(i1, selectionStart);
+                                if (SmileUtils.containsKey(cs.toString()))
+                                    editTextEmoji.getEditableText().delete(i1, selectionStart);
+                                else
+                                    editTextEmoji.getEditableText().delete(selectionStart - 1,
+                                            selectionStart);
+                            } else {
+                                editTextEmoji.getEditableText().delete(selectionStart - 1, selectionStart);
                             }
                         }
-
                     }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
 
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         });
         return view;
     }

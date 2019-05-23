@@ -1,16 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-
-    def globalConfiguration = rootProject.extensions.getByName("ext")
-    compileSdkVersion globalConfiguration.androidCompileSdkVersion
-    buildToolsVersion globalConfiguration.androidBuildToolsVersion
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.example.richtext"
 
-        minSdkVersion globalConfiguration.androidMinSdkVersion
-        targetSdkVersion globalConfiguration.androidTargetSdkVersion
+        minSdkVersion 19
+        targetSdkVersion 28
 
         versionCode 1
         versionName "1.0"
@@ -25,13 +22,18 @@ android {
     dataBinding {
         enabled = true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    def viewDependencies = rootProject.ext.viewDependencies
-    annotationProcessor viewDependencies.apt_butterKnife
-    compile viewDependencies.butterKnife
-    compile project(':textUtilsLib')
-    //compile 'com.github.CarGuo.RickText:textUtilsLib:v2.1.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation project(':textUtilsLib')
 }

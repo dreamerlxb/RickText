@@ -47,6 +47,7 @@
             android:textSize="16sp"
             android:visibility="@{viewmodel.textViewShow ? View.VISIBLE : View.GONE}"
             app:atColor="@{viewmodel.atColor}"
+            app:emojiSize="@{viewmodel.textEmojiSize}"
             app:linkColor="@{viewmodel.linkColor}"
             app:nameList="@{viewmodel.nameListOb}"
             app:needNumberShow="@{viewmodel.needNumberShow}"
@@ -57,27 +58,25 @@
             app:spanTopicCallBackListener="@{viewmodel.spanTopicCallback}"
             app:spanUrlCallBackListener="@{viewmodel.spanUrlCallback}"
             app:topicColor="@{viewmodel.topicColor}"
-            app:topicList="@{viewmodel.topicListOb}"
-            app:emojiSize="@{viewmodel.textEmojiSize}"
-            />
+            app:topicList="@{viewmodel.topicListOb}" />
 
         <com.shuyu.textutillib.RichEditText
             android:id="@+id/mvvm_rich_edit_text"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_alignBottom="@+id/mvvm_rich_text_content"
             android:layout_below="@+id/mvvm_rich_text_title"
+            android:layout_alignBottom="@+id/mvvm_rich_text_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="@null"
             android:gravity="left"
             android:hint="请输入贴子内容"
             android:maxLines="7"
+            android:onClick="@{() -> viewmodel.hideEmojiLayout()}"
             android:textColor="@color/white"
             android:textColorHint="@color/graY"
             android:visibility="@{viewmodel.editTextShow ? View.VISIBLE : View.GONE}"
-            android:onClick="@{() -> viewmodel.hideEmojiLayout()}"
             app:atResult="@{viewmodel.atResult}"
             app:atResultByEnter="@{viewmodel.atResultByEnter}"
             app:editTextAtUtilJumpListener="@{viewmodel.editJump}"
@@ -119,15 +118,15 @@
             android:id="@+id/mvvm_rich_text_edit_img_btn"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:onClick="@{() -> viewmodel.showEmoji()}"
-            android:text="表情"
-            android:visibility="@{viewmodel.editTextShow ? View.VISIBLE : View.GONE}"
-            android:layout_marginLeft="11dp"
             android:layout_alignBaseline="@+id/mvvm_rich_text_edit_text_btn"
             android:layout_alignBottom="@+id/mvvm_rich_text_edit_text_btn"
-            android:layout_toRightOf="@+id/mvvm_rich_text_edit_text_btn"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
             android:layout_toEndOf="@+id/mvvm_rich_text_edit_text_btn"
-            android:layout_marginStart="11dp" />
+            android:layout_toRightOf="@+id/mvvm_rich_text_edit_text_btn"
+            android:onClick="@{() -> viewmodel.showEmoji()}"
+            android:text="表情"
+            android:visibility="@{viewmodel.editTextShow ? View.VISIBLE : View.GONE}" />
 
         <com.shuyu.textutillib.EmojiLayout
             android:id="@+id/mvvm_rich_text_edit_emojiLayout"
@@ -135,11 +134,11 @@
             android:layout_height="220dp"
             android:layout_alignParentBottom="true"
             android:visibility="@{viewmodel.emojiShow ? View.VISIBLE : View.GONE}"
-            rich:emojiRichTextView="@{viewmodel.curRichTextView}"
             app:richIndicatorFocus="@drawable/page_indicator_focused"
             app:richIndicatorUnFocus="@drawable/page_indicator_unfocused"
             app:richMarginBottom="8dp"
-            app:richMarginTop="15dp" />
+            app:richMarginTop="15dp"
+            rich:emojiRichTextView="@{viewmodel.curRichTextView}" />
 
 
     </RelativeLayout>

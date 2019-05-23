@@ -154,8 +154,9 @@ public class TextCommonUtils {
             spannable = getTopicText(context, listTopic, content, textView, clickable, topicColor, spanTopicCallBack);
         }
 
-        if ((listUser == null || listUser.size() <= 0) && spannable == null)
+        if ((listUser == null || listUser.size() <= 0) && spannable == null) {
             return getEmojiText(context, content, textView.emojiSize());
+        }
 
         Spannable spannableString = new SpannableString((spannable == null) ? content : spannable);
         int indexStart = 0;
@@ -355,9 +356,7 @@ public class TextCommonUtils {
                             style.setSpan(new StyleSpan(Typeface.NORMAL), sp.getSpanStart(url), sp.getSpanEnd(url), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                         } else {
                             LinkSpan linkSpan = null;
-                            if (textView != null) {
-                                linkSpan = textView.getCustomLinkSpan(context, url.getURL(), color, spanUrlCallBack);
-                            }
+                            linkSpan = textView.getCustomLinkSpan(context, url.getURL(), color, spanUrlCallBack);
                             if (linkSpan == null) {
                                 linkSpan = new LinkSpan(context, url.getURL(), color, spanUrlCallBack);
                             }
@@ -366,9 +365,7 @@ public class TextCommonUtils {
                         }
                     } else if (needUrl && isTopURL(urlString.toLowerCase())) {
                         LinkSpan linkSpan = null;
-                        if (textView != null) {
-                            linkSpan = textView.getCustomLinkSpan(context, url.getURL(), color, spanUrlCallBack);
-                        }
+                        linkSpan = textView.getCustomLinkSpan(context, url.getURL(), color, spanUrlCallBack);
                         if (linkSpan == null) {
                             linkSpan = new LinkSpan(context, url.getURL(), color, spanUrlCallBack);
                         }
@@ -408,11 +405,8 @@ public class TextCommonUtils {
      * @return 是否符合url
      */
     private static boolean isTopURL(String str) {
-        String ss[] = str.split("\\.");
-        if (ss.length < 3)
-            return false;
-
-        return true;
+        String[] ss = str.split("\\.");
+        return ss.length >= 3;
 
     }
 
@@ -425,10 +419,7 @@ public class TextCommonUtils {
     private static boolean isNumeric(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher isNum = pattern.matcher(str);
-        if (!isNum.matches()) {
-            return false;
-        }
-        return true;
+        return isNum.matches();
     }
 
     /**

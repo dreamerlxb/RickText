@@ -7,7 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 
@@ -60,7 +61,7 @@ public class CenteredImageSpan extends ImageSpan {
     }
 
     @Override
-    public int getSize(Paint paint, CharSequence text, int start, int end,
+    public int getSize(@NonNull Paint paint, CharSequence text, int start, int end,
                        Paint.FontMetricsInt fm) {
 
         if (mVerticalAlignment == DynamicDrawableSpan.ALIGN_BASELINE || mVerticalAlignment == DynamicDrawableSpan.ALIGN_BOTTOM) {
@@ -87,8 +88,8 @@ public class CenteredImageSpan extends ImageSpan {
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom,
-                     Paint paint) {
+    public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom,
+                     @NonNull Paint paint) {
 
         if (mVerticalAlignment == DynamicDrawableSpan.ALIGN_BASELINE || mVerticalAlignment == DynamicDrawableSpan.ALIGN_BOTTOM) {
             super.draw(canvas, text, start, end, x, top, y, bottom, paint);

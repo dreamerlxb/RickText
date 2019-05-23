@@ -257,9 +257,9 @@ class RichEditText : MentionEditText {
                         topicList?.forEach {
                             if (it.topicName == mentionText && getRangeOfClosestMentionString(start, end) != null) {
                                 topicList?.remove(it)
-                                val spannable = getText().getSpans(startP, endP, ForegroundColorSpan::class.java)
+                                val spannable = getText()?.getSpans(startP, endP, ForegroundColorSpan::class.java)
                                 if (spannable != null && spannable.isNotEmpty()) {
-                                    getText().removeSpan(spannable[0])
+                                    getText()?.removeSpan(spannable[0])
                                 }
                                 return
                             }
@@ -369,7 +369,7 @@ class RichEditText : MentionEditText {
                         val position = delIndex
                         delIndex = -1
                         try {
-                            text.replace(position, position + length, "")
+                            text?.replace(position, position + length, "")
                             setSelection(position)
                         } catch (e: Exception) {
                             e.printStackTrace()
@@ -605,7 +605,7 @@ class RichEditText : MentionEditText {
         val span = resolveAtInsert(text, spannable, colorAtUser, listUser)
         setText(span)
 
-        setSelection(getText().length)
+        setSelection(getText()?.length ?: 0)
     }
 
 
@@ -631,11 +631,11 @@ class RichEditText : MentionEditText {
         val topicId = topicModel.topicId
         deleteByEnter = true
         if (selectionEnd == 0) {
-            text.delete(0, 1)
+            text?.delete(0, 1)
         } else {
             val index = text.toString().indexOf("#", selectionEnd - 1)
             if (index != -1) {
-                text.delete(index, index + 1)
+                text?.delete(index, index + 1)
             }
         }
         val topicName = "#" + topicModel.topicName + "#"
@@ -665,11 +665,11 @@ class RichEditText : MentionEditText {
     fun resolveAtResultByEnterAt(userModel: UserModel) {
         val user_id = userModel.user_id
         if (selectionEnd == 0) {
-            text.delete(0, 1)
+            text?.delete(0, 1)
         } else {
             val index = text.toString().indexOf("@", selectionEnd - 1)
             if (index != -1) {
-                text.delete(index, index + 1)
+                text?.delete(index, index + 1)
             }
         }
         val user_name = "@" + userModel.user_name

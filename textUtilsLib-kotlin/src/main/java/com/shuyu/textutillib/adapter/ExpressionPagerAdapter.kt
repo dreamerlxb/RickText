@@ -13,24 +13,33 @@
  */
 package com.shuyu.textutillib.adapter
 
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import android.view.View
+import android.view.ViewGroup
 
-open class ExpressionPagerAdapter(private val views: List<View>) : PagerAdapter() {
+open class ExpressionPagerAdapter(private val views: List<View>) : androidx.viewpager.widget.PagerAdapter() {
 
     override fun getCount(): Int = views.size
 
     override fun isViewFromObject(arg0: View, arg1: Any): Boolean = arg0 === arg1
 
-    override fun instantiateItem(arg0: View?, arg1: Int): Any {
-        (arg0 as ViewPager).addView(views[arg1])
+    override fun instantiateItem(arg0: ViewGroup, arg1: Int): Any {
+        (arg0 as androidx.viewpager.widget.ViewPager).addView(views[arg1])
         return views[arg1]
     }
 
-    override fun destroyItem(arg0: View?, arg1: Int, arg2: Any?) {
-        (arg0 as ViewPager).removeView(views[arg1])
+//    override fun instantiateItem(arg0: View?, arg1: Int): Any {
+//        (arg0 as ViewPager).addView(views[arg1])
+//        return views[arg1]
+//    }
 
+    override fun destroyItem(arg0: ViewGroup, arg1: Int, `object`: Any) {
+        (arg0 as androidx.viewpager.widget.ViewPager).removeView(views[arg1])
     }
+//    override fun destroyItem(arg0: View?, arg1: Int, arg2: Any?) {
+//        (arg0 as ViewPager).removeView(views[arg1])
+//
+//    }
 
 }

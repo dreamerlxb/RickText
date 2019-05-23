@@ -3,7 +3,7 @@ package com.example.richtext;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,19 +40,13 @@ public class UserListActivity extends AppCompatActivity {
             data.add(userModel);
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<UserModel>(this, R.layout.user_list_item, data);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.user_list_item, data);
         userList.setAdapter(adapter);
-        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.putExtra(DATA, data.get(position));
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-            }
+        userList.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent();
+            intent.putExtra(DATA, data.get(position));
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
-
     }
-
-
 }

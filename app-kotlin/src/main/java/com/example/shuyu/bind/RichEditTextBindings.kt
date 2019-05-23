@@ -2,7 +2,7 @@ package com.example.shuyu.bind
 
 import android.app.Activity
 import android.content.Context
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import com.example.shuyu.R
 
 import com.shuyu.textutillib.EmojiLayout

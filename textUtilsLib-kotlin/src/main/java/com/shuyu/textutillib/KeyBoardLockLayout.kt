@@ -127,7 +127,7 @@ class KeyBoardLockLayout : LinearLayout {
      * 锁定 rootLayout 的高度
      */
     private fun lockHeight() {
-        val layoutParams = layoutParams as LinearLayout.LayoutParams
+        val layoutParams = layoutParams as LayoutParams
         layoutParams.height = height
         layoutParams.weight = 0.0f
         requestLayout()
@@ -137,7 +137,7 @@ class KeyBoardLockLayout : LinearLayout {
      * 解锁 rootLayout 的高度
      */
     private fun unlockHeight() {
-        (layoutParams as LinearLayout.LayoutParams).weight = 1.0f
+        (layoutParams as LayoutParams).weight = 1.0f
         layoutParams.height = 0
         requestLayout()
     }

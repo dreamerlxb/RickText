@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -237,15 +237,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                REQUEST_USER_CODE_CLICK -> emojiEditText.resolveAtResult(data.getSerializableExtra(UserListActivity.DATA) as UserModel)
-                REQUEST_USER_CODE_INPUT -> emojiEditText.resolveAtResultByEnterAt(data.getSerializableExtra(UserListActivity.DATA) as UserModel)
+                REQUEST_USER_CODE_CLICK -> emojiEditText.resolveAtResult(data?.getSerializableExtra(UserListActivity.DATA) as UserModel)
+                REQUEST_USER_CODE_INPUT -> emojiEditText.resolveAtResultByEnterAt(data?.getSerializableExtra(UserListActivity.DATA) as UserModel)
 
-                REQUEST_TOPIC_CODE_INPUT -> emojiEditText.resolveTopicResultByEnter(data.getSerializableExtra(TopicListActivity.DATA) as TopicModel)
-                REQUEST_TOPIC_CODE_CLICK -> emojiEditText.resolveTopicResult(data.getSerializableExtra(TopicListActivity.DATA) as TopicModel)
+                REQUEST_TOPIC_CODE_INPUT -> emojiEditText.resolveTopicResultByEnter(data?.getSerializableExtra(TopicListActivity.DATA) as TopicModel)
+                REQUEST_TOPIC_CODE_CLICK -> emojiEditText.resolveTopicResult(data?.getSerializableExtra(TopicListActivity.DATA) as TopicModel)
             }
         }
 

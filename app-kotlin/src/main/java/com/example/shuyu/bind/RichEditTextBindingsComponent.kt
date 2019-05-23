@@ -1,6 +1,6 @@
 package com.example.shuyu.bind
 
-import android.databinding.DataBindingComponent
+import androidx.databinding.DataBindingComponent
 
 /**
  * kotlin 需要提供DataBindingComponent来指定BindingAdapter

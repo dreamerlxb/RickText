@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.text.style.DynamicDrawableSpan;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +31,6 @@ import com.shuyu.textutillib.listener.SpanUrlCallBack;
 import com.shuyu.textutillib.model.TopicModel;
 import com.shuyu.textutillib.model.UserModel;
 import com.shuyu.textutillib.SmileUtils;
-import com.shuyu.textutillib.span.CenteredImageSpan;
 import com.shuyu.textutillib.span.ClickAtUserSpan;
 import com.shuyu.textutillib.span.ClickTopicSpan;
 import com.shuyu.textutillib.span.LinkSpan;
@@ -175,23 +174,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        SpanAtUserCallBack spanAtUserCallBack = new SpanAtUserCallBack() {
-            @Override
-            public void onClick(View view, UserModel userModel1) {
-                Toast.makeText(view.getContext(), userModel1.getUser_name() + " 被点击了", Toast.LENGTH_SHORT).show();
-                if (view instanceof TextView) {
-                    ((TextView) view).setHighlightColor(Color.TRANSPARENT);
-                }
+        SpanAtUserCallBack spanAtUserCallBack = (view, userModel1) -> {
+            Toast.makeText(view.getContext(), userModel1.getUser_name() + " 被点击了", Toast.LENGTH_SHORT).show();
+            if (view instanceof TextView) {
+                ((TextView) view).setHighlightColor(Color.TRANSPARENT);
             }
         };
 
-        SpanTopicCallBack spanTopicCallBack = new SpanTopicCallBack() {
-            @Override
-            public void onClick(View view, TopicModel topicModel) {
-                Toast.makeText(view.getContext(), topicModel.getTopicName() + " 被点击了", Toast.LENGTH_SHORT).show();
-                if (view instanceof TextView) {
-                    ((TextView) view).setHighlightColor(Color.TRANSPARENT);
-                }
+        SpanTopicCallBack spanTopicCallBack = (view, topicModel) -> {
+            Toast.makeText(view.getContext(), topicModel.getTopicName() + " 被点击了", Toast.LENGTH_SHORT).show();
+            if (view instanceof TextView) {
+                ((TextView) view).setHighlightColor(Color.TRANSPARENT);
             }
         };
         RichTextBuilder richTextBuilder = new RichTextBuilder(this);

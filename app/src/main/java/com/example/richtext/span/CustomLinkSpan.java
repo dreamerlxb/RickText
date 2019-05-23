@@ -3,10 +3,8 @@ package com.example.richtext.span;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import androidx.annotation.NonNull;
 import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.style.ClickableSpan;
-import android.view.View;
 
 import com.shuyu.textutillib.listener.SpanUrlCallBack;
 import com.shuyu.textutillib.span.LinkSpan;
@@ -22,7 +20,7 @@ public class CustomLinkSpan extends LinkSpan {
     }
 
     @Override
-    public void updateDrawState(TextPaint ds) {
+    public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(true);
         ds.setTypeface(Typeface.DEFAULT_BOLD);

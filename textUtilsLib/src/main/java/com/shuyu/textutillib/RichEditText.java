@@ -750,7 +750,6 @@ public class RichEditText extends MentionEditText {
     /**
      * 返回真实无添加的数据
      *
-     * @return
      */
     public List<UserModel> getRealUserList() {
         List<UserModel> list = new ArrayList<>();
@@ -768,7 +767,6 @@ public class RichEditText extends MentionEditText {
     /**
      * 返回真实无添加的数据
      *
-     * @return
      */
     public List<TopicModel> getRealTopicList() {
         List<TopicModel> list = new ArrayList<>();
@@ -786,7 +784,6 @@ public class RichEditText extends MentionEditText {
     /**
      * 提交真实文本可以替换了\b
      *
-     * @return
      */
     public String getRealText() {
         if (TextUtils.isEmpty(getText())) {

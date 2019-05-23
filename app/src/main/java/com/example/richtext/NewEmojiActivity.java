@@ -1,7 +1,7 @@
 package com.example.richtext;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -55,14 +55,11 @@ public class NewEmojiActivity extends AppCompatActivity {
 
         emojiLayout.setEditTextSmile(editText);
         keyboardLayout.setBottomView(emojiLayout);
-        keyboardLayout.setKeyBoardStateListener(new KeyBoardLockLayout.KeyBoardStateListener() {
-            @Override
-            public void onState(boolean show) {
-                if (show)
-                    emojiLayout.showKeyboard();
-                else
-                    emojiLayout.hideKeyboard();
-            }
+        keyboardLayout.setKeyBoardStateListener(show -> {
+            if (show)
+                emojiLayout.showKeyboard();
+            else
+                emojiLayout.hideKeyboard();
         });
 
     }

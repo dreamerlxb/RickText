@@ -248,7 +248,7 @@ public class RichTextBuilder {
             }
 
             @Override
-            public int verticalAlignment(){
+            public int verticalAlignment() {
                 return verticalAlignment;
             }
         };

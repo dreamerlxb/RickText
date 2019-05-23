@@ -4,9 +4,11 @@ package com.example.richtext.model;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.BaseObservable;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableField;
+
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableField;
+
 import android.graphics.Color;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;

@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.shuyu.textutillib.listener.SpanTopicCallBack;
 import com.shuyu.textutillib.model.TopicModel;
 import com.shuyu.textutillib.span.ClickTopicSpan;
@@ -24,7 +26,7 @@ public class CustomClickTopicSpan extends ClickTopicSpan {
     }
 
     @Override
-    public void updateDrawState(TextPaint ds) {
+    public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(true);
         ds.setStyle(Paint.Style.FILL_AND_STROKE);

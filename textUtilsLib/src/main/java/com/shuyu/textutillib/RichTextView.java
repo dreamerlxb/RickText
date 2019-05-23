@@ -2,11 +2,9 @@ package com.shuyu.textutillib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.DynamicLayout;
-import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;

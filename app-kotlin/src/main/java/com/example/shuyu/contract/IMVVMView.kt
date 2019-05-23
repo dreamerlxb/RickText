@@ -11,7 +11,7 @@ import com.shuyu.textutillib.listener.SpanUrlCallBack
  * Created by guoshuyu on 2017/8/22.
  */
 
-open interface IMVVMView {
+interface IMVVMView {
     val spanTopicCallBack: SpanTopicCallBack
 
     val spanAtUserCallBack: SpanAtUserCallBack

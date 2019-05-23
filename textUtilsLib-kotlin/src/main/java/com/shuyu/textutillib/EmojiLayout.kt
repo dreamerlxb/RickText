@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -30,7 +30,7 @@ import java.util.ArrayList
 
 class EmojiLayout : LinearLayout {
 
-    private var edittextBarVPager: ViewPager? = null
+    private var edittextBarVPager: androidx.viewpager.widget.ViewPager? = null
     var edittextBarViewGroupFace: LinearLayout? = null
         private set
     var edittextBarLlFaceContainer: LinearLayout? = null
@@ -77,7 +77,7 @@ class EmojiLayout : LinearLayout {
             return
 
 
-        edittextBarVPager = findViewById(R.id.edittext_bar_vPager) as ViewPager
+        edittextBarVPager = findViewById(R.id.edittext_bar_vPager) as androidx.viewpager.widget.ViewPager
 
         edittextBarViewGroupFace = findViewById(R.id.edittext_bar_viewGroup_face) as LinearLayout
 
@@ -218,7 +218,7 @@ class EmojiLayout : LinearLayout {
         return (dipValue * fontScale + 0.5f).toInt()
     }
 
-    private inner class GuidePageChangeListener : ViewPager.OnPageChangeListener {
+    private inner class GuidePageChangeListener : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
         override fun onPageScrollStateChanged(arg0: Int) {}
 

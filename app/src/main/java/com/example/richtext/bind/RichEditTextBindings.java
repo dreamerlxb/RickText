@@ -2,7 +2,7 @@ package com.example.richtext.bind;
 
 import android.app.Activity;
 import android.content.Context;
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 
 import com.example.richtext.R;
 import com.shuyu.textutillib.EmojiLayout;
@@ -41,10 +41,9 @@ public class RichEditTextBindings {
     }
     @BindingAdapter("emojiRichTextView")
     public static void setEmojiRichTextView(EmojiLayout emojiLayout, Context context) {
-        if (emojiLayout != null && context != null && context instanceof Activity) {
+        if (emojiLayout != null && context instanceof Activity) {
             Activity activity = (Activity) context;
-            emojiLayout.setEditTextSmile((RichEditText)
-                    activity.findViewById(R.id.mvvm_rich_edit_text));
+            emojiLayout.setEditTextSmile(activity.findViewById(R.id.mvvm_rich_edit_text));
         }
     }
 

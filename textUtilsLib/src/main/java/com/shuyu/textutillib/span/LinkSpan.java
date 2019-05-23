@@ -2,6 +2,7 @@ package com.shuyu.textutillib.span;
 
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
@@ -28,7 +29,7 @@ public class LinkSpan extends ClickableSpan {
     }
 
     @Override
-    public void onClick(View widget) {
+    public void onClick(@NonNull View widget) {
         if ((url.contains("tel:") && TextUtils.isDigitsOnly(url.replace("tel:", ""))) || TextUtils.isDigitsOnly(url)) {
             if (spanUrlCallBack != null)
                 spanUrlCallBack.phone(widget, url);
@@ -40,7 +41,7 @@ public class LinkSpan extends ClickableSpan {
 
 
     @Override
-    public void updateDrawState(TextPaint ds) {
+    public void updateDrawState(@NonNull TextPaint ds) {
         ds.setColor(color);
         /** 去掉下划线 ， 默认自带下划线 **/
         ds.setUnderlineText(false);

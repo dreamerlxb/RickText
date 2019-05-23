@@ -1,5 +1,7 @@
 package com.shuyu.textutillib.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -39,6 +41,7 @@ public class TopicModel implements Serializable {
         this.topicId = topicId;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return this.topicName;

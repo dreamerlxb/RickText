@@ -14,6 +14,7 @@
 package com.shuyu.textutillib.adapter;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -32,13 +33,14 @@ public class SmileImageExpressionAdapter extends ArrayAdapter<String> {
     }
 
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = View.inflate(getContext(), R.layout.rich_smile_image_row_expression, null);
         }
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.iv_expression);
+        ImageView imageView = convertView.findViewById(R.id.iv_expression);
 
         String filename = getItem(position);
         if ("delete_expression".equals(filename)) {

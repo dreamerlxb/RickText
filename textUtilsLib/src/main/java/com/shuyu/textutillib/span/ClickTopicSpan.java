@@ -1,6 +1,7 @@
 package com.shuyu.textutillib.span;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import com.shuyu.textutillib.listener.SpanTopicCallBack;
@@ -24,7 +25,7 @@ public class ClickTopicSpan extends ClickAtUserSpan {
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         super.onClick(view);
         if (spanTopicCallBack != null) {
             spanTopicCallBack.onClick(view, topicModel);

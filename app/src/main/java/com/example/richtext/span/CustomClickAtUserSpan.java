@@ -9,6 +9,8 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.shuyu.textutillib.listener.SpanAtUserCallBack;
 import com.shuyu.textutillib.model.UserModel;
 import com.shuyu.textutillib.span.ClickAtUserSpan;
@@ -24,7 +26,7 @@ public class CustomClickAtUserSpan extends ClickAtUserSpan {
     }
 
     @Override
-    public void updateDrawState(TextPaint ds) {
+    public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(true);
         //间隔线

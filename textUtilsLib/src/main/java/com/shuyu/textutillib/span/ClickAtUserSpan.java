@@ -1,6 +1,7 @@
 package com.shuyu.textutillib.span;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -27,14 +28,14 @@ public class ClickAtUserSpan extends ClickableSpan {
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         if (spanClickCallBack != null) {
             spanClickCallBack.onClick(view, userModel);
         }
     }
 
     @Override
-    public void updateDrawState(TextPaint ds) {
+    public void updateDrawState(@NonNull TextPaint ds) {
         /** 给文字染色 **/
         ds.setColor(color);
         /** 去掉下划线 ， 默认自带下划线 **/

@@ -82,7 +82,6 @@ public class SmileUtils {
      * 文本对应的资源
      *
      * @param string 需要转化文本
-     * @return
      */
     public static int getRedId(String string) {
         for (Map.Entry<Pattern, Integer> entry : emoticons.entrySet()) {
@@ -234,7 +233,7 @@ public class SmileUtils {
 
     public static String stringToUnicode(String string) {
 
-        StringBuffer unicode = new StringBuffer();
+        StringBuilder unicode = new StringBuilder();
 
         for (int i = 0; i < string.length(); i++) {
 
@@ -272,9 +271,9 @@ public class SmileUtils {
     public static SpannableStringBuilder highlight(String text, String target) {
         SpannableStringBuilder spannable = new SpannableStringBuilder(text);
         CharacterStyle span = null;
-        for (int i = 0; i < specials.length; i++) {
-            if (target.contains(specials[i])) {
-                target = target.replace(specials[i], "\\" + specials[i]);
+        for (String special : specials) {
+            if (target.contains(special)) {
+                target = target.replace(special, "\\" + special);
             }
         }
         Pattern p = Pattern.compile(target.toLowerCase());
@@ -310,18 +309,15 @@ public class SmileUtils {
     }
 
     public static Spannable unicodeToEmojiName(Context context, String content, int size, int verticalAlignment) {
-        Spannable spannable = getSmiledText(context, content, size, verticalAlignment);
-        return spannable;
+        return getSmiledText(context, content, size, verticalAlignment);
     }
 
     public static Spannable unicodeToEmojiName(Context context, String content, int size) {
-        Spannable spannable = getSmiledText(context, content, size);
-        return spannable;
+        return getSmiledText(context, content, size);
     }
 
     public static Spannable unicodeToEmojiName(Context context, String content) {
-        Spannable spannable = getSmiledText(context, content, -1);
-        return spannable;
+        return getSmiledText(context, content, -1);
     }
 
     public static List<String> getTextList() {

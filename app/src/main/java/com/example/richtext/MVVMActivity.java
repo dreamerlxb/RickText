@@ -3,7 +3,9 @@ package com.example.richtext;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -27,10 +29,8 @@ public class MVVMActivity extends Activity implements IMVVMView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMvvmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm);
-
         mvViewModel = new MVViewModel(this);
         binding.setViewmodel(mvViewModel);
-
     }
 
     @Override
@@ -83,26 +83,20 @@ public class MVVMActivity extends Activity implements IMVVMView {
     /**
      * at回调
      */
-    private SpanAtUserCallBack spanAtUserCallBack = new SpanAtUserCallBack() {
-        @Override
-        public void onClick(View view, UserModel userModel1) {
-            Toast.makeText(view.getContext(), userModel1.getUser_name() + " 被点击了", Toast.LENGTH_SHORT).show();
-            if (view instanceof TextView) {
-                ((TextView) view).setHighlightColor(Color.TRANSPARENT);
-            }
+    private SpanAtUserCallBack spanAtUserCallBack = (view, userModel1) -> {
+        Toast.makeText(view.getContext(), userModel1.getUser_name() + " 被点击了", Toast.LENGTH_SHORT).show();
+        if (view instanceof TextView) {
+            ((TextView) view).setHighlightColor(Color.TRANSPARENT);
         }
     };
 
     /**
      * 话题回调
      */
-    private SpanTopicCallBack spanTopicCallBack = new SpanTopicCallBack() {
-        @Override
-        public void onClick(View view, TopicModel topicModel) {
-            Toast.makeText(view.getContext(), topicModel.getTopicName() + " 被点击了", Toast.LENGTH_SHORT).show();
-            if (view instanceof TextView) {
-                ((TextView) view).setHighlightColor(Color.TRANSPARENT);
-            }
+    private SpanTopicCallBack spanTopicCallBack = (view, topicModel) -> {
+        Toast.makeText(view.getContext(), topicModel.getTopicName() + " 被点击了", Toast.LENGTH_SHORT).show();
+        if (view instanceof TextView) {
+            ((TextView) view).setHighlightColor(Color.TRANSPARENT);
         }
     };
 }
